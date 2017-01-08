@@ -1,0 +1,12 @@
+1. run nodejs server 
+2. run mongod.exe 
+3. run momgo.exe
+
+How to do?
+1. [command: node server] at git bash/command line
+2. [command: ./mongod.exe] at git bash/command line
+3. [command: ./mongo.exe] at git bash/command line
+
+mongo database directory: C:\Program Files\MongoDB or C:\Program Files\MongoDB\Server\3.4
+
+link: https://www.youtube.com/watch?v=06_SIzYXgqQ

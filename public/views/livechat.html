@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-cookies.js"></script>
+	<script type="text/javascript" src="js/ui-bootstrap-tpls-2.4.0.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/chat.js"></script>
+	<title>Live Chat</title>
+</head>
+<body ng-app="MyApp" ng-controller="ChatController">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div ng-include="'/views/loginbar.html'"></div>
+	</div>
+
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<div class="container" style="margin-top: 100px;font-size: 16px">
+	    <div class="row">
+	        <div class="conversation-wrap col-xs-3 col-lg-3" style="font-size: 18px">
+	            <div class="media conversation text-center" ng-repeat="ctl in contactlist" ng-style="select_style[$index]" >
+	                <div class="media-body" ng-click="Selecting($index, false)">
+	                    <h4 class="media-heading">{{ctl.name}}</h4>
+	                    <small>{{ctl.email}}</small>
+	                </div>
+	            </div>
+	        </div>
+
+	        <div class="message-wrap col-xs-8 col-lg-8">
+	            <div class="msg-wrap" ng-repeat="message in messages">
+	                <div class="media msg" ng-if = "message.sender_id == account._id">
+	                    <div class="alert alert-primary media-body">
+	                        <small class="pull-left time" style="color:#9999ff"><i class="fa fa-clock-o"></i> {{message.time}}</small>
+	                        <h5 class="media-heading pull-right" style="color:#003d99;font-size: 18px">{{message.sender_name}}</h5>
+	                        <small class="col-xs-12 col-lg-12 text-right" style="color:#0066ff;font-size: 18px">
+	                        	{{message.text}} <span class="glyphicon glyphicon-chevron-left"></span>
+	                        </small>
+	                    </div> 
+	                </div>
+	                <div class="media msg" ng-if = "message.sender_id != account._id">
+	                    <div class="media-body">
+	                        <small class="pull-right time" style="color:#ff9999"><i class="fa fa-clock-o"></i> {{message.time}}</small>
+	                        <h5 class="media-heading pull-left" style="color:#990000;font-size: 18px">{{message.sender_name}}</h5>
+	                        <small class="col-xs-12 col-lg-12 text-left" style="color:red;font-size: 18px">
+	                        	<span class="glyphicon glyphicon-chevron-right"></span> {{message.text}}
+	                        </small>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="msg-wrap" ng-show="messages.length == 0">
+	                <div class="media msg ">
+	                    <div class="media-body text-center">
+	                        <big class="alert alert-danger col-lg-12">
+	                        	Don't have any message
+	                        </big>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <div class="send-wrap ">
+
+	                <textarea class="form-control send-message" rows="3" placeholder="Write a reply..." ng-model="text_input"></textarea>
+
+
+	            </div>
+	            <div class="btn-panel" >
+	                <a href="" class=" col-lg-4 text-right btn send-message-btn pull-right" ng-click="SendMessage()" style="font-size: 16px"><i class="fa fa-plus"></i><strong> Send Message</strong></a>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>

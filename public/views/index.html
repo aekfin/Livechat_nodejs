@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<title>Contact List App</title>
+</head>
+<body ng-app="MyApp" ng-controller="MyAppCtrl">
+	<div class="container">
+		<h1>Contact List</h1>
+		<table class="table">
+			<thead>	
+				<tr>
+					<th ng-repeat="label in labels">{{label}}</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td ng-repeat="label in labels">
+						<input class="form-control" type="text" placeholder="{{label}}" ng-model="input[$index]">
+					</td>
+					<td ng-show="!isSelected">
+						<div class="btn btn-primary" ng-click="Insert()">INSERT</div>
+						<div class="btn btn-danger" ng-click="DeleteLast()">DELETE</div>
+					</td>
+					<td ng-show="isSelected">
+						<div class="btn btn-warning" ng-click="Edit()">EDIT</div>
+						<div class="btn btn-danger" ng-click="DeleteSelected()" >DELETE</div>
+					</td>
+				</tr>
+				<tr ng-repeat="cl in contactlist" ng-click="Selected($index)" ng-style="mystyle[$index]">
+					<td>{{cl.name}}</td>
+					<td>{{cl.email}}</td>
+					<td>{{cl.number}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

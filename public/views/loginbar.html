@@ -1,0 +1,31 @@
+<div class="container" ng-controller="ChatController">
+    <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">MEAN STACK เว้ยยยย</a>
+    </div>
+    <center>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li ng-show="insystem"><a href="#">{{account.name}}</a></li>
+                <li ng-show="insystem"><a href="/chat">Live Chat</a></li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div ng-show="!insystem">                  
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Username" ng-model="username">
+                    </div>
+                    <button type="submit" class="btn btn-info" ng-click="SignIn()">Sign In</button>
+                </div>
+                <div ng-show="insystem">                
+                    <a class="btn btn-default" href="/chat"><strong>{{account.name}}</strong></a>  
+                    <button type="submit" class="btn btn-warning" ng-click="SignOut()">Log Out</button>
+                </div>
+            </form>
+        </div>
+    </center>
+</div>
+
